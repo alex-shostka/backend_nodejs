@@ -7,7 +7,6 @@ const keys = require('./config/keys');
 const app = express();
 const bodyParser = require('body-parser')
 const authRoutes = require('./routes/auth');
-const zonesRoutes = require('./routes/zones');
 
 mongoose.connect(keys.mongoURI)
     .then(() => {
@@ -26,6 +25,5 @@ app.use(cors());
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(bodyParser.json());
 app.use('/api/auth', authRoutes);
-app.use('/api/zones', zonesRoutes);
 
 module.exports = app;
