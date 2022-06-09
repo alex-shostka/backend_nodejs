@@ -1,6 +1,5 @@
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
-
 const User = require('../models/User');
 const keys = require('../config/keys');
 
@@ -50,5 +49,4 @@ module.exports.register = async function(req, res) {
         
         }
     }
-
 }
