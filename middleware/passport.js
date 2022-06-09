@@ -2,6 +2,7 @@ const JwtStrategy = require('passport-jwt').Strategy;
 const ExtractJwt = require('passport-jwt').ExtractJwt;
 const keys = require('../config/keys');
 const User = require('../models/User');
+const errorHandler = require('../utils/errorHandler');
 
 const opts = {}
 
@@ -19,7 +20,7 @@ module.exports = passport => {
                 done(null, false);
             }
         } catch (error) {
-            console.log(error);
+            errorHandler(error);
         }
     }));
 }
