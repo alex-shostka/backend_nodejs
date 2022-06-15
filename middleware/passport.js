@@ -1,13 +1,11 @@
 const JwtStrategy = require('passport-jwt').Strategy;
 const ExtractJwt = require('passport-jwt').ExtractJwt;
-const keys = require('../config/keys');
 const User = require('../models/User');
-const errorHandler = require('../utils/errorHandler');
 
 const opts = {}
 
 opts.jwtFromRequest = ExtractJwt.fromAuthHeaderAsBearerToken();
-opts.secretOrKey = keys.jwt;
+opts.secretOrKey = process.env.JWT_SECRET_KEY;
 
 module.exports = passport => {
     passport.use(new JwtStrategy(opts, async (jwt_payload, done) => {
@@ -20,7 +18,7 @@ module.exports = passport => {
                 done(null, false);
             }
         } catch (error) {
-            errorHandler(error);
+            console.log(error);
         }
     }));
 }
