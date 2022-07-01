@@ -52,7 +52,9 @@ module.exports.register = async function(req, res) {
 
         await user.save();
         
-        res.status(201)
+        res.status(201).json({
+            message: "Пользователь создан"
+        })
     } catch (error) {
         console.log(error);
         res.status(500).json({ message: "Oшибка сервера" })
