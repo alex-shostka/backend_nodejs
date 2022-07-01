@@ -9,7 +9,7 @@ const userSchema = new Schema({
         unique: true
     },
     login: {},
-    isDelite: {},
+    isDelete: {},
     roleId: {},
     lastCheickIn: {},
     passwordCount: {},
