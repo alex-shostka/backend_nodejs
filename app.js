@@ -7,9 +7,8 @@ const bodyParser = require("body-parser");
 const authRoutes = require("./routes/auth");
 const usersRouters = require("./routes/users");
 const zonesRouters = require("./routes/zones.js");
-const { config } = require("dotenv");
 
-config();
+require("dotenv").config();
 
 mongoose
   .connect(process.env.DB_CONNECT)
