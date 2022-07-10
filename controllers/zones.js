@@ -10,7 +10,7 @@ module.exports.getZones = async (req, res) => {
   }
 };
 
-module.exports.getZoneById = async (req, res) => {
+module.exports.getOneZone = async (req, res) => {
   try {
     const zone = await Zone.findById(req.params.id);
     res.status(200).json(zone);

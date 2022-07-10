@@ -19,15 +19,11 @@ mongoose
     console.log(error);
   });
 
-// Additional tools
 app.use(morgan("dev"));
 app.use(cors());
-
-// Body Parser
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
-// Routers
 app.use("/api/auth", authRoutes);
 app.use("/api/users", usersRouters);
 app.use("/api/zones", zonesRouters);
