@@ -1,4 +1,6 @@
-const Zone = require("../models/Zones.js");
+/* eslint-disable no-sequences */
+/* eslint-disable no-unused-expressions */
+const Zone = require('../models/Zones.js');
 
 module.exports.getZones = async (req, res) => {
   try {
@@ -6,7 +8,7 @@ module.exports.getZones = async (req, res) => {
     res.status(200).json(zones);
   } catch (error) {
     console.log(error);
-    res.status(500).json({ message: "Oшибка сервера" });
+    res.status(500).json({ message: 'Oшибка сервера' });
   }
 };
 
@@ -16,7 +18,7 @@ module.exports.getOneZone = async (req, res) => {
     res.status(200).json(zone);
   } catch (error) {
     console.log(error);
-    res.status(500).json({ message: "Oшибка сервера" });
+    res.status(500).json({ message: 'Oшибка сервера' });
   }
 };
 
@@ -34,7 +36,7 @@ module.exports.addZone = async (req, res) => {
     leftDownX: req.body.leftDownX,
     centerX: req.body.centerX,
     centerY: req.body.centerY,
-    isDelete: req.body.isDelete,
+    isDelete: req.body.isDelete
   });
 
   /**
@@ -47,11 +49,11 @@ module.exports.addZone = async (req, res) => {
     await zone.save();
 
     res.status(201).json({
-      message: "Зона успешно создана",
+      message: 'Зона успешно создана'
     });
   } catch (error) {
     console.log(error);
-    res.status(500).json({ message: "Oшибка сервера" });
+    res.status(500).json({ message: 'Oшибка сервера' });
   }
 };
 
@@ -72,7 +74,7 @@ module.exports.updateZone = async (req, res) => {
     leftDownX: req.body.leftDownX,
     centerX: req.body.centerX,
     centerY: req.body.centerY,
-    isDelete: req.body.isDelete,
+    isDelete: req.body.isDelete
   };
 
   if (req.zoneId) {
@@ -97,10 +99,10 @@ module.exports.updateZone = async (req, res) => {
       { $set: updated },
       { new: true }
     );
-    res.status(200).json({ message: "Зона успешно обновлена" });
+    res.status(200).json({ message: 'Зона успешно обновлена' });
   } catch (error) {
     console.log(error);
-    res.status(500).json({ message: "Oшибка сервера" });
+    res.status(500).json({ message: 'Oшибка сервера' });
   }
 };
 
@@ -109,9 +111,9 @@ module.exports.deleteZone = async (req, res) => {
 
   try {
     await Zone.findByIdAndRemove(zoneId);
-    res.status(200).json({ message: "Зона удалена" });
+    res.status(200).json({ message: 'Зона удалена' });
   } catch (error) {
     console.log(error);
-    res.status(500).json({ message: "Oшибка сервера" });
+    res.status(500).json({ message: 'Oшибка сервера' });
   }
 };

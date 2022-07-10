@@ -1,15 +1,15 @@
-const express = require("express");
+const express = require('express');
 const router = express.Router();
-const controller = require("../controllers/zones.js");
-const isAuth = require("../middleware/isAuth");
+const controller = require('../controllers/zones.js');
+const isAuth = require('../middleware/isAuth');
 
 router
-  .route("/")
+  .route('/')
   .get(isAuth, controller.getZones)
   .post(isAuth, controller.addZone);
 
 router
-  .route("/:id")
+  .route('/:id')
   .get(isAuth, controller.getOneZone)
   .put(isAuth, controller.updateZone)
   .delete(isAuth, controller.deleteZone);

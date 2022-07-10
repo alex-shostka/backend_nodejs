@@ -1,13 +1,14 @@
 {
-  "name": "aster_backend",
+  "name": "simple_backend_app",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
   "scripts": {
     "start": "node index",
-    "server": "nodemon index"
+    "server": "nodemon index",
+    "build": "babel src --out-dir dist"
   },
-  "author": "",
+  "author": "Alex Shostka",
   "license": "ISC",
   "dependencies": {
     "bcrypt": "^5.0.1",
@@ -22,6 +23,24 @@
     "passport-jwt": "^4.0.0"
   },
   "devDependencies": {
-    "nodemon": "^2.0.16"
+    "@babel/cli": "^7.18.6",
+    "@babel/core": "^7.18.6",
+    "@babel/plugin-proposal-class-properties": "^7.18.6",
+    "@babel/plugin-proposal-object-rest-spread": "^7.18.6",
+    "@babel/preset-env": "^7.18.6",
+    "babel-core": "7.0.0-bridge.0",
+    "babel-eslint": "^8.2.1",
+    "eslint": "^4.15.0",
+    "eslint-config-prettier": "^2.9.0",
+    "eslint-config-standard": "^11.0.0",
+    "eslint-friendly-formatter": "^3.0.0",
+    "eslint-loader": "^1.7.1",
+    "eslint-plugin-import": "^2.13.0",
+    "eslint-plugin-node": "^7.0.1",
+    "eslint-plugin-prettier": "^2.6.2",
+    "eslint-plugin-promise": "^3.8.0",
+    "eslint-plugin-standard": "^3.1.0",
+    "nodemon": "^2.0.16",
+    "prettier": "^1.15.2"
   }
 }

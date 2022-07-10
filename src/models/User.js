@@ -1,10 +1,10 @@
-const mongoose = require("mongoose");
+const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 const userSchema = new Schema({
   id: {},
   username: {
-    type: String,
+    type: String
   },
   login: {},
   isDelete: {},
@@ -16,8 +16,8 @@ const userSchema = new Schema({
   expiredTime: {},
   isLocked: {},
   password: {
-    type: String,
-  },
+    type: String
+  }
 });
 
-module.exports = mongoose.model("users", userSchema);
+module.exports = mongoose.model('users', userSchema);
