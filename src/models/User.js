@@ -7,7 +7,10 @@ const User = new Schema({
   password: {
     type: String
   },
-  roles: [{ type: String, ref: 'Role' }]
+  roles: {
+    type: String,
+    ref: 'Role'
+  }
 });
 
 module.exports = model('User', User);

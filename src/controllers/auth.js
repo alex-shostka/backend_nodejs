@@ -24,17 +24,15 @@ module.exports.login = async (req, res) => {
       });
     }
 
-    const token = jwt.sign({ user }, process.env.JWT_SECRET_KEY, {
-      expiresIn: process.env.EXPIRES_IN
-    });
+    const token = generateToken(user);
 
     res.status(200).json({
       token: `Bearer ${token}`,
-      user: { username: username }
+      user: { username, roles: user.roles }
     });
   } catch (error) {
     console.log(error);
-    res.status(500).json({ message: 'Oшибка сервера' });
+    return res.status(500).json({ message: 'Oшибка сервера' });
   }
 };
 
@@ -44,7 +42,7 @@ module.exports.register = async (req, res) => {
     const user = await User.findOne({ username });
     const userRole = await Role.findOne({ value: role })
     const validationError = validationResult(req);
-    
+
     if (user) {
       res.status(409).json({
         message: 'Данный пользователь уже существует'
@@ -73,3 +71,9 @@ module.exports.register = async (req, res) => {
     res.status(500).json({ message: 'Oшибка сервера' });
   }
 };
+
+const generateToken = (user) => {
+  return jwt.sign({ user }, process.env.JWT_SECRET_KEY, {
+    expiresIn: process.env.EXPIRES_IN
+  });
+}

@@ -1,15 +1,15 @@
 const jwt = require('jsonwebtoken');
 
 module.exports = (req, res, next) => {
-  const authHeader = req.header('authorization');
+  const authHeaderToken = req.header('authorization');
 
   try {
-    const decodedToken = jwt.verify(authHeader, process.env.JWT_SECRET_KEY);
+    const decodedToken = jwt.verify(authHeaderToken, process.env.JWT_SECRET_KEY);
 
-    req.userId = decodedToken.user._id; // ???
+    req.user = decodedToken; // ???
 
     next();
-  } catch (err) {
-    res.status(401).json({ error: 'Unauthorized, Access Denied' });
+  } catch (error) {
+    return res.status(401).json({ error: 'Unauthorized, Access Denied' });
   }
 };
