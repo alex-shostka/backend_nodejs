@@ -6,7 +6,6 @@ const app = express();
 const bodyParser = require('body-parser');
 const authRoutes = require('./routes/auth');
 const usersRouters = require('./routes/users');
-const zonesRouters = require('./routes/zones.js');
 
 require('dotenv').config();
 
@@ -26,6 +25,5 @@ app.use(bodyParser.json());
 
 app.use('/api/auth', authRoutes);
 app.use('/api/users', usersRouters);
-app.use('/api/zones', zonesRouters);
 
 module.exports = app;
