@@ -1,6 +1,8 @@
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 const User = require('../models/User');
+const Role = require('../models/Role');
+const { validationResult } = require('express-validator');
 
 module.exports.login = async (req, res) => {
   const { username, password } = req.body;
@@ -37,11 +39,12 @@ module.exports.login = async (req, res) => {
 };
 
 module.exports.register = async (req, res) => {
-  const { username, password } = req.body;
-
   try {
+    const { username, password, role } = req.body;
     const user = await User.findOne({ username });
-
+    const userRole = await Role.findOne({ value: role })
+    const validationError = validationResult(req);
+    
     if (user) {
       res.status(409).json({
         message: 'Данный пользователь уже существует'
@@ -50,9 +53,16 @@ module.exports.register = async (req, res) => {
 
     const newUser = new User({
       username,
-      password: bcrypt.hashSync(password, bcrypt.genSaltSync(10))
+      password: bcrypt.hashSync(password, bcrypt.genSaltSync(10)),
+      roles: [userRole.value]
     });
 
+    if (!validationError.isEmpty()) {
+      return res.status(400).json({
+        message: 'Ошибка при регистрации',
+        validationError
+      });
+    }
     await newUser.save();
 
     res.status(201).json({
